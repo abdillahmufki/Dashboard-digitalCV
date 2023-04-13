@@ -459,3 +459,28 @@ aside #toggle-navbar {
   justify-content: center;
   align-items: center;
 }
+
+hr {
+  opacity: 0.1;
+}
+
+label {
+  font-size: 14px;
+}
+
+.btn-simpan {
+  background-color: #121f3e;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-simpan:hover {
+  background-color: #121f3e;
+  opacity: 0.8;
+  color: #fff;
+}
