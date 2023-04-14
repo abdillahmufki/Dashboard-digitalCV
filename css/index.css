@@ -41,7 +41,7 @@ body {
 aside {
   background-color: #fff;
   padding: 50px 24px;
-  /* padding-bottom: 250px; */
+  padding-bottom: 250px;
   background: #0d3b72;
   height: 100vh;
   overflow-y: scroll;

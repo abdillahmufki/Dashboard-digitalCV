@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <link rel="stylesheet" href="./css/index.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <title>HRD | Form Permintaan</title>
 </head>
@@ -88,9 +89,20 @@
         </div>
 
         <div class="col-12 col-xl-9">
-            <nav class="navbar bg-body-tertiary shadow-lg mb-5 rounded">
-                <div class="container-fluid">
-                    <h2 class="navbar-brand fw-bold">HRD hrdsystech</h2>
+            <nav class="statistics-card">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button id="toggle-navbar" onclick="toggleNavbar()">
+                                <img src="./assets/img/global/burger.svg" class="mb-2" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div class="container-fluid">
+                            <h3 class="fw-bold text-center">HRD hrdsystech</h3>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -914,16 +926,17 @@
                                                 <div>
                                                     <p class="fw-bold">Pertanyaan khusus untuk kandidat (Optional)</p>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control"
+
+                                                <form action="" class="input-group" method="post" id="kotak">
+                                                    <input id="name" type="text" class="form-control"
                                                         placeholder="Kriteria pekerjaan yang akan ditanyakan"
                                                         aria-label="Kriteria pekerjaan yang akan ditanyakan"
                                                         aria-describedby="button-addon2">
-                                                    <button class="btn btn-success" type="button" id="button-addon2"><i
+                                                    <button class="btn btn-success" type="button" id="add"><i
                                                             class="fa-solid fa-plus"></i></button>
-                                                </div>
+                                                </form>
                                             </div>
-                                            <div>
+                                            <div class="my-3">
                                                 <div>
                                                     <p class="fw-bold">Deskripsi Pekerjaan</p>
                                                 </div>
@@ -991,22 +1004,34 @@
     </script>
 
     <script>
-        const navbar = document.querySelector(".col-navbar");
-        const cover = document.querySelector(".screen-cover");
+        const navbar = $(".col-navbar");
+        const cover = $(".screen-cover");
 
-        const sidebar_items = document.querySelectorAll(".sidebar-item");
+        const sidebar_items = $(".sidebar-item");
 
         function toggleNavbar() {
-            navbar.classList.toggle("d-none");
-            cover.classList.toggle("d-none");
+            navbar.toggleClass("d-none");
+            cover.toggleClass("d-none");
         }
 
         function toggleActive(e) {
-            sidebar_items.forEach(function (v, k) {
-                v.classList.remove("active");
-            });
-            e.closest(".sidebar-item").classList.add("active");
+            sidebar_items.removeClass("active");
+            $(e).closest(".sidebar-item").addClass("active");
         }
+
+
+        $(document).ready(function () {
+            $('#add').click(function (event) {
+                const tambahkotak = $('#kotak');
+                event.preventDefault();
+                $('<div class="input-group my-2"><input id="name" type="text" class="form-control"placeholder="Kriteria pekerjaan yang akan ditanyakan" aria-label="Kriteria pekerjaan yang akan ditanyakan" aria-describedby="button-addon2"><button class="btn btn-danger" type="button" id="remove"><i class="fa-solid fa-x"></i></button></div>')
+                    .appendTo(tambahkotak);
+            });
+
+            $('body').on('click', '#remove', function () {
+                $(this).parent('div').remove();
+            });
+        });
     </script>
 </body>
 
